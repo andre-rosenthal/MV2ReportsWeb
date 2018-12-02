@@ -1,0 +1,42 @@
+﻿@model MV2ReportsWeb.Models.Scheduler
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Scheduler</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Hint)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Hint)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ReportName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReportName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ReporDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReporDescription)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

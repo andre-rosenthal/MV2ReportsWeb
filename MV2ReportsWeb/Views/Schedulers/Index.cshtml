@@ -1,0 +1,45 @@
+﻿@model IEnumerable<MV2ReportsWeb.Models.Scheduler>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Scheduler</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        @*<th>
+            @Html.DisplayNameFor(model => model.Hint)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.ReportName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ReporDescription)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Hint)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ReportName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ReporDescription)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

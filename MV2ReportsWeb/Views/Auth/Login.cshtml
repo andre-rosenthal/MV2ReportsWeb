@@ -1,0 +1,25 @@
+﻿@model MV2ReportsWeb.Models.Users
+@{
+
+    ViewBag.Title = "Login";
+}
+
+<h2>Log In</h2>
+
+@Html.ValidationSummary(true)
+
+@using (Html.BeginForm())
+{
+        @Html.LabelFor(u => u.Email)<br />
+        @Html.TextBoxFor(u => u.Email)<br />
+        @Html.LabelFor(u => u.Password)<br />
+        @Html.PasswordFor(u => u.Password)<br />
+
+        <p></p>
+        <p>
+            <button type="submit">Log In</button>
+            <p></p>
+            <button type="submit">Register</button>
+        </p>
+}
+    <p></p>
