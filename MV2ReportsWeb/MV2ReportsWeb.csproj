@@ -263,6 +263,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="MeisterCalls\SAPReports.cs" />
+    <Compile Include="MeisterCalls\Schedule.cs" />
     <Compile Include="Migrations\201811221443287_Rep.cs" />
     <Compile Include="Migrations\201811221443287_Rep.Designer.cs">
       <DependentUpon>201811221443287_Rep.cs</DependentUpon>

@@ -7,18 +7,22 @@
 <h2>Scheduler</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("New Schedule", "Create") |
+    @Html.ActionLink("New ad hoc", "AdHoc") |
 </p>
 <table class="table">
     <tr>
-        @*<th>
-            @Html.DisplayNameFor(model => model.Hint)
-        </th>*@
         <th>
-            @Html.DisplayNameFor(model => model.ReportName)
+            @Html.DisplayNameFor(model => model.ScheduleType)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ReporDescription)
+            @Html.DisplayNameFor(model => model.WeekDay)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TimeSlot)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NickName)
         </th>
         <th></th>
     </tr>
@@ -26,18 +30,20 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Hint)
+            @Html.DisplayFor(model => item.ScheduleType)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.ReportName)
+            @Html.DisplayFor(model => item.WeekDay)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.ReporDescription)
+            @Html.DisplayFor(modelItem => item.TimeSlot)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            @Html.DisplayFor(modelItem => item.NickName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
         </td>
     </tr>
 }

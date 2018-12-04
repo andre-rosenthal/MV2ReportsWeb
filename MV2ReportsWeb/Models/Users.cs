@@ -23,5 +23,10 @@ namespace MV2ReportsWeb.Models
         public string Name { get; set; }
 
         public string Company { get; set; }
+
+        public string SAPID { get; set; }
+        [DataType(DataType.Password)]
+        public string SAPPsw { get; set; }
+
     }
 }

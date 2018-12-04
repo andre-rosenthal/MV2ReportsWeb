@@ -7,7 +7,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using MV2ReportsWeb.Models;
-using MV2ReportsWeb.MeisterCalls;
+using MV2ReportsWeb.MeisterCalls.ReportFind;
+using MV2ReportsWeb.Utils;
 using SDK = MeisterCore;
 using System.Text;
 using System.Security.Claims;
@@ -21,12 +22,12 @@ namespace MV2ReportsWeb.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            List<MyReportsRequest> req = new List<MyReportsRequest>();
-            SDK.Resource<MyReportsRequest,MyReportsResult> resource = new SDK.Resource<MyReportsRequest,MyReportsResult>(new Uri("Http://mv2gtw0001:8000"));
+            List<Request> req = new List<Request>();
+            SDK.Resource<Request,Response> resource = new SDK.Resource<Request,Response>(new Uri("Http://mv2gtw0001:8000"));
             string psw = "DemoUser.";
             resource.Authenticate("DEMOUSER", Encoding.ASCII.GetBytes(psw));
-            List<MyReportsResult> res = new List<MyReportsResult>();
-            MyReportsRequest request = new MyReportsRequest();
+            List<Response> res = new List<Response>();
+            Request request = new Request();
             request.UserId = "DEMOUSER";
             req.Add(request);
             try
@@ -42,17 +43,21 @@ namespace MV2ReportsWeb.Controllers
                 string userEmail = sessionEmail.Value;
                 db.MyReports.RemoveRange(db.MyReports);
                 foreach (var v in res)
-                    foreach (var v1 in v.ReportDatum)
+                    foreach (var v1 in v.ReportData)
                     {
                         var r = db.MyReports.Create();
                         r.Email = userEmail;
                         r.ReportName = v1.Report.Name;
                         Guid guid = Guid.Empty;
                         if (Guid.TryParse(v1.Pky, out guid))
+                        {
                             r.UUID = guid.ToString();
+                            r.UUID = r.UUID.Substring(r.UUID.LastIndexOf("-") + 1);
+                        }
                         DateTime dt = Utils.Utils.ToDateTime(v1.Date, v1.Time);
+                        r.Description = v1.Report.Description;
                         r.DateTime = dt;
-                        r.Status = Enum.GetName(typeof(MyReports.Statuses), r.ToNamedStatus(v1.Status));
+                        r.Status = Enum.GetName(typeof(Statuses), r.ToNamedStatus(v1.Status));
                         db.MyReports.Add(r);
                     }
                 db.SaveChanges();

@@ -9,13 +9,13 @@ namespace MV2ReportsWeb.Models
 {
     public class Scheduler
     {
-        
-        public String Hint { get; set; }
         [Key]
         public int ID { get; set; }
-        [DisplayName("Report Name")]
-        public String ReportName { get; set; }
-        [DisplayName("Report Description")]
-        public String ReporDescription { get; set; }
+        public string ScheduleType { get; set; }
+        public string WeekDay { get; set; }
+        public string TimeSlot { get; set; }
+        public string NickName { get; set; }
+        public string UUID { get; set; }
+        public string UserName { get; set; }
     }
 }

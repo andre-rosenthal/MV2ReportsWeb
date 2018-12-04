@@ -4,10 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace MV2ReportsWeb.MeisterCalls
+namespace MV2ReportsWeb.MeisterCalls.ReportFind
 {
-    [JsonObject("REQUEST")]
-    public partial class MyReportsRequest
+
+    [JsonObject("REQUESRT")]
+    public partial class Request
     {
         [JsonProperty("REPORT_GUID")]
         public string ReportGuid { get; set; }
@@ -15,33 +16,42 @@ namespace MV2ReportsWeb.MeisterCalls
         public string UserId { get; set; }
     }
 
-    [JsonObject("RESULTS")]
-    public partial class MyReportsResult
+    [JsonObject("RESPONSE")]
+   
+    public partial class Response
     {
         [JsonProperty("REPORT_DATA")]
-        public List<ReportDatum> ReportDatum { get; set; }
+        public List<ReportData> ReportData { get; set; }
     }
 
-    public partial class ReportDatum
+    public partial class ReportData
     {
         [JsonProperty("PKY")]
         public string Pky { get; set; }
+
         [JsonProperty("DATESTAMP")]
         public string Date { get; set; }
         [JsonProperty("TIMESTAMP")]
         public string Time { get; set; }
+
         [JsonProperty("USERNAME")]
         public string Username { get; set; }
+
         [JsonProperty("REPORT")]
         public Report Report { get; set; }
+
         [JsonProperty("STATUS")]
         public string Status { get; set; }
+
         [JsonProperty("EMAIL")]
         public string Email { get; set; }
+
         [JsonProperty("VIA_EMAIL")]
         public string ViaEmail { get; set; }
+
         [JsonProperty("WITH_METADATA")]
         public string WithMetadata { get; set; }
+
         [JsonProperty("COLUMNS_NAMED")]
         public string ColumnsNamed { get; set; }
     }
@@ -65,8 +75,12 @@ namespace MV2ReportsWeb.MeisterCalls
 
         [JsonProperty("COLUMNS_NAMED")]
         public string ColumnsNamed { get; set; }
+
+        [JsonProperty("DESCRIPTION")]
+        public string Description { get; set; }
     }
 
+    [JsonObject("PARAMETERS")]
     public partial class Parameter
     {
         [JsonProperty("SELNAME")]
@@ -86,6 +100,5 @@ namespace MV2ReportsWeb.MeisterCalls
 
         [JsonProperty("HIGH")]
         public string High { get; set; }
-
     }
 }

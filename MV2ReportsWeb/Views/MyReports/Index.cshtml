@@ -7,8 +7,9 @@
 <h2>My Reports</h2>
 
 <p>
-    @Html.ActionLink("Schedule New", "Index", "Schedulers")
+    @Html.ActionLink("Scheduler", "Index", "Schedulers")
 </p>
+@using MV2ReportsWeb.Utils
 <table class="table">
     <tr>
         <th>
@@ -16,6 +17,9 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.ReportName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.UUID)
@@ -35,17 +39,29 @@
             @Html.DisplayFor(modelItem => item.ReportName)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.UUID)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Status)
         </td>
-        <td>
-            @Html.ActionLink("Download", "Download", new { id = item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-        </td>
-    </tr>
+            @if (item.Status == Enum.GetName(typeof(Statuses), Statuses.Finished))
+            {
+            <td>
+                @Html.ActionLink("Download", "Download", new { id = item.ID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID }) 
+            </td>
+            }
+            else
+            {
+            <td>
+                @Html.ActionLink("Details", "Details", new { id = item.ID })
+            </td>
+            }
+        </tr>
 }
 
 </table>
